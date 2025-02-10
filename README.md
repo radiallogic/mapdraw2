@@ -1,2 +1,2 @@
 # mapdraw2
-A modern rewrite of mapdraw (tripsapp). 
+A modern rewrite of my map drawing application. 
