@@ -8,6 +8,7 @@ import { ZoomAtom } from "../atoms";
 
 import Paths from "../../paths/components/Paths";
 import Sites from "./Sites";
+import Delete from "../../delete/components/Delete";
 
 import {
   MapContainer,
@@ -36,6 +37,7 @@ export default function Map() {
 
       <Paths />
       <Sites />
+      <Delete />
 
       <LayersControl position="bottomright">
         <BaseLayer name="Esri Satellite + Labels">
