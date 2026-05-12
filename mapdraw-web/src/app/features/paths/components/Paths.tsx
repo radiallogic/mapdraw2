@@ -1,24 +1,33 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import * as turf from "@turf/turf";
 
-import { LatLngBounds, latLng, LatLng } from "leaflet";
-import { Polyline, Rectangle, useMapEvents, useMapEvent } from "react-leaflet";
-import { DrawMouseEvents } from "../../paths/components/DrawMouseEvents";
-import { ElbowLine } from "../../paths/components/ElbowLine";
+import { latLng, LatLng } from "leaflet";
+import { Polyline } from "react-leaflet";
+import { DrawMouseEvents } from "./DrawMouseEvents";
+import { ElbowLine } from "./ElbowLine";
 
-import { Path } from "../../paths/types";
+import { usePaths } from "../hooks";
+import { Path } from "../types";
 import { useAtom, useAtomValue } from "jotai";
-import { PathsAtom } from "../../paths/atoms";
+import { PathsAtom } from "../atoms";
 
-import { ZoomAtom } from "../atoms";
+import { ZoomAtom } from "../../map/atoms";
+import { currentTripAtom } from "../../trips/atoms";
 
 export default function Paths() {
-  //const bounds = new LatLngBounds(latLng(51.3, -0.1), latLng(51.5, -0.06));
   const blackOptions = { color: "black" };
-
-  const [paths, setPaths] = useAtom(PathsAtom);
+  const [latLngs, setLatLngs] = useState<LatLng[] | null>(null);
   const zoom = useAtomValue(ZoomAtom);
-  const [latLngs, setLatLngs] = React.useState<LatLng[] | null>(null);
+  const [paths, setPaths] = useAtom(PathsAtom);
+  const [currentTrip, setCurrentTrip] = useAtom(currentTripAtom);
+
+  const { data } = usePaths();
+
+  useEffect(() => {
+    if (data.length > 1) {
+      setPaths(data);
+    }
+  }, [currentTrip, data]);
 
   const createPolyline = (latLngs: Array<LatLng>) => {
     if (latLngs.length < 2) {

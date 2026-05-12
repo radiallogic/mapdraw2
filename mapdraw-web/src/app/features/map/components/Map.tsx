@@ -6,7 +6,7 @@ import { getRandomPosition } from "@/lib/getRandomPosition";
 
 import { ZoomAtom } from "../atoms";
 
-import Paths from "./Paths";
+import Paths from "../../paths/components/Paths";
 import Sites from "./Sites";
 
 import {

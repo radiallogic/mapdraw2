@@ -1,14 +1,12 @@
 import { atom } from "jotai";
 import { Trip } from "./types";
+import { getRandomPosition } from "@/lib/getRandomPosition";
 
 const trip = {
   id: 0,
-  name: "",
+  name: "Empty",
   vehicle: "",
-  location: {
-    lat: 0,
-    lng: 0,
-  },
+  location: getRandomPosition(),
   userId: 0,
 };
 

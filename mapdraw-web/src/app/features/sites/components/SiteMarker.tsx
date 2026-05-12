@@ -10,7 +10,7 @@ interface SiteMarkerProps {
 }
 
 export default function SiteMarker(props: SiteMarkerProps) {
-  const [site, seSite] = useState<Site>(props.site);
+  const [site, setSite] = useState<Site>(props.site);
   const [edit, setEdit] = useState<boolean>(false);
 
   let content: ReactElement = <></>;
@@ -42,7 +42,7 @@ export default function SiteMarker(props: SiteMarkerProps) {
           theme="snow"
           value={site.content}
           onChange={(content) => {
-            // seSite(content);
+            // setSite(content);
           }}
         />
       );

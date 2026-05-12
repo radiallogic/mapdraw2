@@ -11,7 +11,7 @@ import { Trash2 } from "lucide-react";
 export default function Delete() {
   const [mode, setMode] = useAtom(ModeAtom);
   const [paths, setPaths] = useAtom(PathsAtom);
-  const [sites, seSites] = useAtom(SitesAtom);
+  const [sites, setSites] = useAtom(SitesAtom);
 
   const [latlngs, setLatLngs] = useState<LatLng[]>([]);
   const [bounds, setBounds] = useState<LatLngBounds>();
