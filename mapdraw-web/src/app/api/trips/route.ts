@@ -10,10 +10,8 @@ export async function GET(request: Request) {
     if (!session) {
       return new Response("Unauthorized", { status: 401 });
     }
-    const all = await db
-      .select()
-      .from(trips)
-      .where(eq(users.id, session.user.id));
+    const all = await db.select().from(trips);
+    //.where(eq(users.id, session.user.id));
 
     return new Response(JSON.stringify(all), {
       status: 200,
