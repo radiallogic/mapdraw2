@@ -1,0 +1,8 @@
+docker exec -it  mapdraw-app  bash 
+
+cd mapdraw-web
+yarn dev
+
+
+
+

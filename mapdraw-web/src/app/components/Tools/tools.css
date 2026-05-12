@@ -1,0 +1,63 @@
+.bubble {
+    background-color: rgba(255, 255, 255, 0.6); /* semi-transparent */
+    backdrop-filter: blur(8px);                /* subtle blur effect */
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 1em 1em 3em -0.5em rgba(0,0,0,0.5); /* soft shadow */
+    border-radius: 1em;
+
+    padding: 1em;
+    margin: 1em;
+
+    z-index: 900;
+    pointer-events: all;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.toolButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.6em 0.8em;
+    border-radius: 0.75em;
+    border: none;
+
+    cursor: pointer;
+    background: rgba(255,255,255,0.85);
+    transition: background 0.2s;
+}
+
+.toolButton:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.toolButton.active {
+    background: rgba(0,0,0,0.1);
+}
+
+.material-symbols-outlined {
+    font-size: 1.8em;
+}
+
+.toolLabel {
+    font-size: 0.9em;
+}
+
+.collapseButton {
+    margin-top: 0.5em;
+}
+
+.distancePanel {
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    font-size: 1.2em;
+}
