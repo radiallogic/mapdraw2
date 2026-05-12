@@ -1,11 +1,19 @@
-import Link from "next/link";
-import React, { ReactElement } from "react";
-
-import { ChevronsUpDown, User } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@mui/material";
+import { useSearchParams } from "next/navigation";
+import { User } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import LoginModal from "@/app/components/Modals/ModalLogin";
 
-export default function Footer() {
+export default function Login() {
   const { data: session } = useSession();
+  const searchParams = useSearchParams();
+
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  if (searchParams.get("login") === "1" || searchParams.has("error")) {
+    setLoginOpen(true);
+  }
 
   return (
     <div data-sidebar="footer" className="flex flex-col gap-2 p-2">
@@ -30,9 +38,20 @@ export default function Footer() {
                 </>
               )) || (
                 <>
-                  <Link href="\login">
-                    <span>Login</span>
-                  </Link>
+                  <div
+                    className="font-bold"
+                    onClick={() => {
+                      setLoginOpen(true);
+                    }}
+                  >
+                    Sign in
+                  </div>
+                  <LoginModal
+                    open={loginOpen}
+                    handleClose={() => {
+                      setLoginOpen(false);
+                    }}
+                  />
                 </>
               )}
             </div>

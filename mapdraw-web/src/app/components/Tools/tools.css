@@ -1,7 +1,7 @@
 .bubble {
     background-color: rgba(255, 255, 255, 0.6); /* semi-transparent */
-    backdrop-filter: blur(8px);                /* subtle blur effect */
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(2px);               
+    -webkit-backdrop-filter: blur(2px);
 
     box-shadow: 1em 1em 3em -0.5em rgba(0,0,0,0.5); /* soft shadow */
     border-radius: 1em;

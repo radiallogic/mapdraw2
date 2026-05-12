@@ -40,7 +40,12 @@ export async function POST(request: Request) {
   const insert = {
     name: body.name,
     userId: session.user.id,
-    location: body.location ?? [0, 0],
+    location: body.location ?? {
+      location: {
+        x: -3.0176,
+        y: 51.8203,
+      },
+    },
     zoom: body.zoom ?? 5,
   };
 

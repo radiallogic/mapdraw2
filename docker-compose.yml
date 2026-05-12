@@ -1,4 +1,3 @@
-version: "3"
 services:
   # redis:
   #   container_name: test-redis
@@ -10,12 +9,13 @@ services:
   #   ports:
   #     - 6379:6379
   #   networks:
-  #     - test-network
-  test:
-    container_name: test
+  #     - network0
+  web:
+    container_name: mapdraw-web
     build:
       context: ./
       dockerfile: Dockerfile
+    working_dir: /app/mapdraw-web
     env_file:
       - ./.env.local
     ports:
@@ -26,18 +26,25 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     networks:
-      - test-network
-  # db:
-  #   image: postgis/postgis
-  #   container_name: testdb
-  #   env_file:
-  #     - ./.env.local
-  #   ports: 
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres-data:/data/db
-  #   networks:
-  #     - test-network
+      - network0
+  db:
+    # image: postgis/postgis
+    # platform: linux/amd64 
+    image: imresamu/postgis:18-3.6.1-alpine3.22
+    container_name: mapdraw-db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: mapdraw
+    restart: unless-stopped
+    env_file:
+      - ./.env.local
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgres-data:/data/db
+    networks:
+      - network0
 
 
 volumes:
@@ -45,5 +52,5 @@ volumes:
 
 
 networks:
-  test-network:
+  network0:
     driver: bridge

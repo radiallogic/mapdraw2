@@ -9,8 +9,7 @@ export function Bubble({ children, className }: BubbleProps) {
   return (
     <div
       className={`
-        absolute
-        top-4 left-4
+        m-4
         bg-white/70
         backdrop-blur-md
         rounded-xl
